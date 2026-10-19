@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع دراستو</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            color: #4CAF50;
+            font-size: 40px;
+            margin-top: 50px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        p {
+            font-size: 20px;
+            color: #555;
+        }
+        .add-button {
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            background-color: #008CBA;
+            color: white;
+            margin-top: 30px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .add-button:hover {
+            transform: translateY(-10px);
+            background-color: #005f73;
+        }
+        .sections {
+            display: none;
+            margin-top: 30px;
+            text-align: center;
+        }
+        .sections button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #f8b400;
+            border: none;
+            color: white;
+            border-radius: 6px;
+            margin: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .sections button:hover {
+            background-color: #e68900;
+        }
+        .titles {
+            display: none;
+            margin-top: 30px;
+            text-align: left;
+            padding-left: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            font-size: 22px;
+            margin: 15px 0;
+            cursor: pointer;
+            background-color: #e7e7e7;
+            padding: 15px;
+            border-radius: 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        li:hover {
+            background-color: #d4d4d4;
+            transform: translateX(10px);
+        }
+        #content-detail {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
+            background-color: #e7f7e7;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        #content-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+        #content-description {
+            font-size: 20px;
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <h1>مرحبا بكم في موقع دراستو</h1>
+    <p>ما الذي يمكن أن يساعدك؟</p>
+
+    <button class="add-button" onclick="showSections()">اضغط هنا</button>
+
+    <div class="sections" id="sections">
+        <button onclick="showMathTitles()">رياضيات</button>
+        <button onclick="showPhysicsTitles()">فيزياء</button>
+        <button onclick="showChemistryTitles()">كيمياء</button>
+    </div>
+
+    <div class="titles" id="math-titles">
+        <h2>عناوين الرياضيات</h2>
+        <ul>
+            <li onclick="showMathContent('Suites')">Suites</li>
+            <li onclick="showMathContent('Matrices')">Matrices</li>
+            <li onclick="showMathContent('Fonctions')">Fonctions</li>
+            <li onclick="showMathContent('Nombres')">Nombres</li>
+            <li onclick="showMathContent('Géométrie dans l\'espace')">Géométrie dans l'espace</li>
+        </ul>
+    </div>
+
+    <div class="titles" id="physics-titles">
+        <h2>عناوين الفيزياء</h2>
+        <ul>
+            <li onclick="showPhysicsContent('Mécanique')">Mécanique</li>
+            <li onclick="showPhysicsContent('Thermodynamique')">Thermodynamique</li>
+            <li onclick="showPhysicsContent('Électromagnétisme')">Électromagnétisme</li>
+            <li onclick="showPhysicsContent('Optique')">Optique</li>
+        </ul>
+    </div>
+
+    <div class="titles" id="chemistry-titles">
+        <h2>عناوين الكيمياء</h2>
+        <ul>
+            <li onclick="showChemistryContent('Structure atomique')">Structure atomique</li>
+            <li onclick="showChemistryContent('Réactions chimiques')">Réactions chimiques</li>
+            <li onclick="showChemistryContent('Chimie organique')">Chimie organique</li>
+            <li onclick="showChemistryContent('Thermochimie')">Thermochimie</li>
+        </ul>
+    </div>
+
+    <div class="content-detail" id="content-detail">
+        <h3 id="content-title"></h3>
+        <p id="content-description"></p>
+    </div>
+
+    <script>
+        function showSections() {
+            var sections = document.getElementById('sections');
+            sections.style.display = sections.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function showMathTitles() {
+            document.getElementById('math-titles').style.display = 'block';
+            document.getElementById('physics-titles').style.display = 'none';
+            document.getElementById('chemistry-titles').style.display = 'none';
+        }
+
+        function showPhysicsTitles() {
+            document.getElementById('math-titles').style.display = 'none';
+            document.getElementById('physics-titles').style.display = 'block';
+            document.getElementById('chemistry-titles').style.display = 'none';
+        }
+
+        function showChemistryTitles() {
+            document.getElementById('math-titles').style.display = 'none';
+            document.getElementById('physics-titles').style.display = 'none';
+            document.getElementById('chemistry-titles').style.display = 'block';
+        }
+
+        function showMathContent(title) {
+            if (title === 'Suites') {
+                document.getElementById('content-title').innerText = 'Suites';
+                document.getElementById('content-description').innerText = 'La suite est une succession ordonnée de nombres suivant une règle déterminée. Nous allons aborder les suites arithmétiques et géométriques'
+            } else if (title === 'Matrices') {
+                document.getElementById('content-title').innerText = 'Matrices';
+                document.getElementById('content-description').innerText = 'Les matrices sont des tableaux rectangulaires de nombres. Elles sont très utilisées en algèbre pour résoudre des systèmes d équations linéaires'
+            } else if (title === 'Fonctions') {
+                document.getElementById('content-title').innerText = 'Fonctions';
+                document.getElementById('content-description').innerText = 'Une fonction est une relation entre un ensemble de départ et un ensemble d arrivée. Nous explorerons les fonctions linéaires et affines'
+            } else if (title === 'Nombres') {
+                document.getElementById('content-title').innerText = 'Nombres';
+                document.getElementById('content-description').innerText = 'Les nombres sont des entités fondamentales des mathématiques. Nous verrons les types de nombres, tels que les entiers, les réels, et les complexes'
+            } else if (title === 'Géométrie dans l\'espace') {
+                document.getElementById('content-title').innerText = 'Géométrie dans l\'espace';
+                document.getElementById('content-description').innerText = 'La géométrie dans l espace concerne l étude des figures géométriques en trois dimensions.Nous aborderons les plans, les droites et les vecteurs'
+            }
+            document.getElementById('content-detail').style.display = 'block';
+        }
+
+        function showPhysicsContent(title) {
+            if (title === 'Mécanique') {
+                document.getElementById('content-title').innerText = 'Mécanique';
+                document.getElementById('content-description').innerText = 'La mécanique est la branche de la physique qui étudie les mouvements des corps. Elle se divise en dynamique, statique et cinématique'
+            } else if (title === 'Thermodynamique') {
+                document.getElementById('content-title').innerText = 'Thermodynamique';
+                document.getElementById('content-description').innerText = 'La thermodynamique traite des lois qui gouvernent les échanges d énergie sous forme de chaleur et de travail. Nous explorerons la première et la deuxième loi de la thermodynamique'
+            } else if (title === 'Électromagnétisme') {
+                document.getElementById('content-title').innerText = 'Électromagnétisme';
+                document.getElementById('content-description').innerText = 'L électromagnétisme est la branche de la physique qui étudie les phénomènes liés aux champs électriques et magnétiques. Nous aborderons les lois de Maxwell et les applications pratiques'
+            } else if (title === 'Optique') {
+                document.getElementById('content-title').innerText = 'Optique';
+                document.getElementById('content-description').innerText = 'L optique est la branche de la physique qui traite de la lumière et de ses propriétés. Nous étudierons la réflexion, la réfraction et les phénomènes de diffraction'
+            }
+            document.getElementById('content-detail').style.display = 'block';
+        }
+
+        function showChemistryContent(title) {
+            if (title === 'Structure atomique') {
+                document.getElementById('content-title').innerText = 'Structure atomique';
+                document.getElementById('content-description').innerText = 'La structure atomique traite de la constitution des atomes. Nous allons explorer les protons, neutrons, électrons et les couches électroniques'
+            } else if (title === 'Réactions chimiques') {
+                document.getElementById('content-title').innerText = 'Réactions chimiques';
+                document.getElementById('content-description').innerText = 'Les réactions chimiques sont des transformations où des substances réagissent pour former de nouvelles substances. Nous allons examiner différents types de réactions'
+            } else if (title === 'Chimie organique') {
+                document.getElementById('content-title').innerText = 'Chimie organique';
+                document.getElementById('content-description').innerText = 'La chimie organique étudie les composés du carbone. Nous aborderons les alcanes, alcènes, et les réactions organiques importantes'
+            } else if (title === 'Thermochimie') {
+                document.getElementById('content-title').innerText = 'Thermochimie';
+                document.getElementById('content-description').innerText = 'La thermochimie est la branche de la chimie qui étudie les échanges thermiques lors des réactions chimiques. Nous explorerons les enthalpies de réaction et la loi de Hess'
+            }
+            document.getElementById('content-detail').style.display = 'block';
+        }
+    </script>
+</body>
+</html> 
